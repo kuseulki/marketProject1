@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org xmlns="http://www.w3.org/1999/html">
+<div th:fragment="header">
+
+    <style>
+       .header-logo { padding-bottom: 50px; font-size: 35px; font-weight: bold;}
+       .p-2{ font-weight: bold; font-size: 17px; font-family: "Noto Sans"; text-decoration-line:none; }
+       .dropdown-toggle { font-size: 19px; font-weight: bold; font-family: "Noto Sans"; text-decoration-line:none;}
+       .header-1{ padding-bottom: 50px;}
+    </style>
+
+    <div class="container">
+          <div class="header">
+        <div class="header-logo text-center">
+            <a class="header-logo" href="/">Market</a>
+        </div>
+
+        <div class="header-1 header-middle">
+            <div class="nav d-flex justify-content-between">
+
+                <a class="p-2 dropdown-toggle" id="navbar_drop" data-toggle="dropdown">카테고리</a>
+                <div class="dropdown-menu">
+                    <a class="p-2 dropdown-item" th:href="@{/fruit}">과일</a>
+                    <a class="p-2 dropdown-item" th:href="@{/beverage}">음료</a>
+                    <a class="p-2 dropdown-item" th:href="@{/#}">간식</a>
+                    <a class="p-2 dropdown-item" th:href="@{/#}">정육</a>
+                </div>
+
+                <a class="p-2 link-secondary text-dark" th:href="@{/}">전체 상품보기 </a>
+                <a class="p-2 link-secondary text-dark" th:href="@{/new}">신상품</a>
+                <a class="p-2 link-secondary text-dark" th:href="@{/best}">베스트</a>
+                <a class="p-2 link-secondary text-dark" th:href="@{/board/list}">Q / A</a>
+
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0 bi bi-search" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</html>

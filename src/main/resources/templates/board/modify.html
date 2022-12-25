@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <style>
+    span {style="align: right";}
+
+    .alert{
+     color: black;
+     font-size : 20px;
+     background-color: #FFFFFF;
+     font-weight: bold;
+     text-align: center;
+     }
+
+    </style>
+
+    <div class="container">
+        <br/>
+        <div class="alert alert-primary" role="alert">Q & A</div>
+
+        <form th:action="@{/board/update/{id}(id=${board.id})}" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" id="boardId" th:value="${board.id}">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">제목</label>
+                <input type="title" th:value="${board.title}" class="form-control" id="title" name="title"
+                       placeholder="제목을 입력해주세요.">
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label"></label>
+                <textarea class="form-control" th:text="${board.content}" id="content" name="content" rows="10"
+                          placeholder="내용을 입력해주세요."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="formFileMultiple" class="form-label"></label>
+                <input class="form-control" type="file" id="formFileMultiple" name="file" multiple>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-primary">수정</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+</html>

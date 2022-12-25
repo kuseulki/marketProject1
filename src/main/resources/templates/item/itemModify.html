@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <form th:action="@{/admin/item/update/pro/{id}(id=${item.id})}" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+                        <h3>상품 수정</h3>
+                        <hr/>
+                    <input type="hidden" th:value="${item.id}">
+
+                    <label for="category">카테고리</label>
+                    <select class="form-control" id="category" th:value="${item.category}">
+                        <option value="new">NEW</option>
+                        <option value="best">BEST</option>
+                        <option value="fruit">과일</option>
+                        <option value="beverage">음료</option>
+                    </select>
+
+                        <div class="col-12">
+                            <label for="itemName" class="form-label">상품 이름</label>
+                            <input type="text" class="form-control" id="itemName" name="itemName" th:value="${item.itemName}">
+                        </div>
+                        <div class="col-12">
+                            <label for="itemDetail" class="form-label">상품 설명</label>
+                            <input type="text" class="form-control" name="itemDetail" id="itemDetail" th:value="${item.itemDetail}">
+                        </div>
+                        <div class="col-12">
+                            <label for="price" class="form-label">상품 가격</label>
+                            <input type="text" class="form-control" id="price" name="price" th:value="${item.price}">
+                        </div>
+                        <div class="col-12">
+                            <label for="stockNumber" class="form-label">상품 재고</label>
+                            <input type="text" class="form-control" id="stockNumber" name="stockNumber" th:value="${item.stockNumber}">
+                        </div>
+                        <div class="col-12">
+                            <label for="file" class="form-label">상품 이미지 업로드</label>
+                            <input class="form-control" type="file" id="file" name="file" multiple>
+                        </div>
+
+                    <hr class="my-4">
+                    <button class="w-100 btn btn-primary btn-lg mb-3" type="submit">상품 수정</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</div>
+</html>

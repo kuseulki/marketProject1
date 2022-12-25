@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            <div class="col" th:each="item : ${items}">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/files/}+${item.fileName}" alt="..." />
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="fw-bolder" th:text="${item.getItemName()}">상품이름</h5>
+                            <p th:text="|${item.getPrice()} 원|">상품가격</p>
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" th:href="'/item/' +${item.id}">상세보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</html>

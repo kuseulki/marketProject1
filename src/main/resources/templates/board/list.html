@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extra/spring-security"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 리스트 페이지</title>
+</head>
+
+<div layout:fragment="content">
+
+    <style>
+    span {style="align: right";}
+
+    .alert{
+       color: #5f0080;
+       font-size : 30px;
+       background-color: #FFFFFF;
+       font-weight: bold;
+       text-align: center;
+     }
+
+    </style>
+
+    <div class="container">
+        <br/>
+        <div class="alert alert-light" role="alert">Q & A</div>
+
+        <div class="container_top">
+            <div class="row">
+                <div class="col d-flex justify-content-start" sec:authorize-expr="isAuthenticated()">
+                    <button type="button" class="btn btn-outline-primary"
+                            th:onclick="|location.href='@{/board/write}'|">작성하기
+                    </button>
+                </div>
+                <div class="col d-grid gap-2 d-md-flex justify-content-md-end">
+                    <form class="d-flex" th:action="@{/board/list}" method="get">
+                        <input class="form-control me-sm-2" type="text" name="searchKeyword" placeholder="Q & A 내에서 검색">
+                        <button class="btn btn-secondary my-2 my-sm-0 bi bi-search" type="submit"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card m-2" th:each="board : ${list}">
+            <div class="card-body">
+                <input type="hidden" id="boardId" th:value="${board.id}">
+                <a class="btn btn-lg card-title " th:text="${board.title}" th:href="@{/board/{id}(id=${board.id})}"
+                   style="font-weight: 800; font-size: 35px">제목</a>
+                <br/>
+                <div class="d-flex justify-content-between">
+                    <strong th:text="|작성자 : ${board.writer} &nbsp&nbsp|"></strong>
+                    <div class="d-flex d-grid gap-2 d-md-block">
+                        <span class="bi bi-eye fs-10" th:text="|&nbsp${board.viewCount}&nbsp|"></span>
+                        <span th:text="${board.createdDate}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-between">
+
+            <div class="pagination justify-content-center"/>
+            <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <li class="page-item">
+                    <a class="page-link" th:if="${page != nowPage}"
+                       th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}"
+                       th:text="${page}"></a>
+                    <a class="page-link" th:if="${page == nowPage}" th:text="${page}" style="color: red"></a>
+                </li>
+            </th:block>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <div class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <form method="post" enctype="multipart/form-data" th:object="${itemDto}" th:action>
+                    <div class="row g-3">
+                        <h3>상품 등록</h3>
+                        <hr/>
+                        <input type="hidden" th:field="*{id}">
+
+                        <label for="category">카테고리</label>
+                        <select class="form-control" id="category" th:field="*{category}">
+                            <option th:value="new">NEW</option>
+                            <option th:value="best">BEST</option>
+                            <option th:value="fruit">과일</option>
+                            <option th:value="beverage">음료</option>
+                        </select>
+
+                        <div class="col-12">
+                            <label th:for="itemName" class="form-label">상품명</label>
+                            <input type="text" th:field="*{itemName}" class="form-control" placeholder="상품명을 입력해주세요">
+                            <p th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="fieldError"></p>
+                        </div>
+                        <div class="col-12">
+                            <label th:for="price" class="form-label">가격</label>
+                            <input type="number" th:field="*{price}" class="form-control" placeholder="상품 가격을 입력해주세요">
+                            <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError"></p>
+                        </div>
+
+                        <div class="col-12">
+                            <label th:for="stockNumber" class="form-label">재고</label>
+                            <input type="number" th:field="*{stockNumber}" class="form-control"
+                                   placeholder="상품의 재고를 입력해주세요">
+                            <p th:if="${#fields.hasErrors('stockNumber')}" th:errors="*{stockNumber}"
+                               class="fieldError"></p>
+                        </div>
+
+                        <div class="col-12">
+                            <label th:for="itemDetail" class="form-label">상품 설명</label>
+                            <textarea class="form-control" aria-label="With textarea"
+                                      th:field="*{itemDetail}"></textarea>
+                            <p th:if="${#fields.hasErrors('itemDetail')}" th:errors="*{itemDetail}"
+                               class="fieldError"></p>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="file" class="form-label"></label>
+                            <input class="form-control" type="file" id="file" name="file" multiple>
+                        </div>
+                        <button th:formaction="@{/admin/item/new}" type="submit" class="btn btn-primary">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+</div>
+</html>

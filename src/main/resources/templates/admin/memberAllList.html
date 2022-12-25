@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h3>회원관리</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">회원ID</th>
+                        <th scope="col">회원명</th>
+                        <th scope="col">이메일</th>
+                        <th scope="col">휴대폰</th>
+                        <th scope="col">주소</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user, i: ${userAll}">
+                        <td th:text="${i.count}">1</td>
+                        <td th:text="${user.getUserId()}">회원ID</td>
+                        <td th:text="${user.getUserName()}">회원명</td>
+                        <td th:text="${user.getEmail()}">이메일</td>
+                        <td th:text="${user.getPhone()}">휴대폰</td>
+                        <td th:text="${user.getAddress()}">주소</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="nav">
+
+    <style>
+        .nav-link { font-color: black; font-size: 15px; font-weight: bold;}
+    </style>
+    <div class="container">
+    <div class="nav-old header navbar-area">
+        <div class="header-top">
+            <div class="d-flex justify-content-end">
+
+                <!--  비 로그인 페이지  -->
+                <a class="nav-link" sec:authorize="isAnonymous()" href="/login">로그인&nbsp;&nbsp;</a>
+                <a class="nav-link" sec:authorize="isAnonymous()" href="/join">회원가입</a>
+
+                <!--   로그인 유저 페이지 -->
+                <div sec:authorize="isAuthenticated()">
+                    <!--    관리자 페이지        -->
+                    <div sec:authorize="hasRole('ROLE_ADMIN')" class="d-flex">
+                        <a class="nav-link" href="/admin/page">어드민페이지&nbsp;&nbsp;</a>
+                        <a class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">관리자페이지</a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link dropdown-item" href="/mypage/myBoard">내가 쓴 글</a>
+                                <a class="nav-link dropdown-item" href="/admin/item/new">상품등록</a>
+                                <a class="nav-link dropdown-item" href="/admin/item/all">상품관리</a>
+                                <a class="nav-link dropdown-item" href="/admin/user/all">회원관리</a>
+                            </div>
+                        </a>
+                        <a class="nav-link" href="/logout">&nbsp;&nbsp;로그아웃</a>
+                    </div>
+
+                    <!--    일반 유저 페이지        -->
+                    <div sec:authorize="hasRole('ROLE_USER')" class="nav-link d-flex">
+                        <a class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <span><span sec:authentication="principal.username"></span>님</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link dropdown-item nav-link" href="/mypage/update">내 정보</a>
+                                <a class="nav-link dropdown-item nav-link" href="/mypage/myBoard">내가 쓴 글</a>
+                                <a class="nav-link dropdown-item nav-link" href="/date">장바구니</a>
+                            </div>
+                        </a>
+                        <a class="nav-link" href="/logout">&nbsp;&nbsp;로그아웃</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</html>

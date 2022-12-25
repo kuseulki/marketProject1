@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <div class="container">
+        <div class="row">
+
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h3>상품관리</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">번호</th>
+                            <th scope="col">상품ID</th>
+                            <th scope="col">상품명</th>
+                            <th scope="col">가격</th>
+                            <th scope="col">재고</th>
+                            <th scope="col">삭제</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="allItem, i: ${items}">
+                            <td th:text="${i.count}">1</td>
+                            <td th:text="${allItem.getId()}">3번상품</td>
+                            <td th:text="${allItem.getItemName()}">상품명</td>
+                            <td th:text="${allItem.getPrice()}">가격</td>
+                            <td th:text="${allItem.getStockNumber()}">재고</td>
+                            <td class="btn btn-outline-dark"><a style="text-decoration: none">삭제</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <style>
+    .alert{
+     color: black;
+     font-size : 20px;
+     background-color: #FFFFFF;
+     font-weight: bold;
+     text-align: center;
+     }
+
+    </style>
+
+    <div class="container">
+        <br/>
+        <div class="alert alert-primary" role="alert">Q & A</div>
+        <form action="/board/writepro" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">제목</label>
+                <input type="title" class="form-control" id="title" name="title" placeholder="제목을 입력해주세요.">
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label"></label>
+                <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용을 입력해주세요."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="file" class="form-label"></label>
+                <input class="form-control" type="file" id="file" name="file">
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-primary">작성</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+</html>

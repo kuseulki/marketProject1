@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <style>
+        .fieldError { color: #bd2130; border-color: #dc3545;}
+    </style>
+
+
+    <div class="container col-6">
+        <div class="text-center py-5">
+            <h2>회원 수정</h2>
+        </div>
+
+        <form class ="row g-3" th:action="@{/mypage/update/{id}(id=${member.id})}" method="post">
+            <div class="mb-3 row">
+
+                <input type="hidden" id="id" th:value="${member.id}">
+
+                <label th:for="userId" class="col-sm-3 col-form-label">아이디</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{member.userId}" class="form-control" placeholder="아이디" readonly/>
+                </div>
+            <div class="mb-3 row">
+                <label th:for="userName" class="col-sm-3 col-form-label">이름</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{member.userName}" class="form-control" placeholder="이름" readonly>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label th:for="email" class="col-sm-3 col-form-label">이메일</label>
+                <div class="col-sm-9">
+                    <input type="email" th:field="*{member.email}" class="form-control" placeholder="이메일" readonly>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label th:for="phone" class="col-sm-3 col-form-label">휴대폰</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{member.phone}" class="form-control" placeholder="휴대폰">
+<!--                    <p th:if="${#fields.hasErrors('phone')}" th:errors="*{member.phone}" class="fieldError"></p>-->
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">주소</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{member.address}" class="form-control" placeholder="주소">
+<!--                    <p th:if="${#fields.hasErrors('address')}" th:errors="*{member.address}" class="fieldError"></p>-->
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-primary btn-lg col-sm-5" id="submit">수정</button>
+            </div>
+            <!--            <input type=”hidden” th:name=”${_csrf.parameterName}” th:value=”${_csrf.token}”>-->
+            </div>
+        </form>
+
+    </div>
+</div>
+
+</html>

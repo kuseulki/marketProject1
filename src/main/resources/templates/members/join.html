@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <style>
+        .fieldError { color: #bd2130; border-color: #dc3545;}
+    </style>
+
+
+    <div class="container col-6">
+        <div class="text-center py-5">
+            <h2>회원가입</h2>
+        </div>
+
+        <form class ="row g-3" th:action th:object="${memberDto}" method="post">
+            <div class="mb-3 row">
+
+                <label th:for="userId" class="col-sm-3 col-form-label">아이디</label>
+
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{userId}" class="form-control" placeholder="아이디" />
+                    <p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="fieldError">Incorrect data</p>
+                </div>
+<!--                <div class="col-sm-3">-->
+<!--                    <button class="id_overlap_button w-100 btn btn-outline-primary btn-m" id="btn-id-check">중복확인</button>-->
+<!--                </div>-->
+            </div>
+            <div class="mb-3 row">
+                <label th:for="password" class="col-sm-3 col-form-label">비밀번호</label>
+                <div class="col-sm-9">
+                    <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호">
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label th:for="userName" class="col-sm-3 col-form-label">이름</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{userName}" class="form-control" placeholder="이름">
+                    <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="fieldError">Incorrect data</p>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label th:for="email" class="col-sm-3 col-form-label">이메일</label>
+                <div class="col-sm-9">
+                    <input type="email" th:field="*{email}" class="form-control" placeholder="이메일">
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label th:for="phone" class="col-sm-3 col-form-label">휴대폰</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{phone}" class="form-control" placeholder="휴대폰">
+                    <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">주소</label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{address}" class="form-control" placeholder="주소">
+                    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
+                </div>
+            </div>
+
+            <hr class="my-4">
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-primary btn-lg col-sm-5" id="submit">가입하기</button>
+            </div>
+<!--            <input type=”hidden” th:name=”${_csrf.parameterName}” th:value=”${_csrf.token}”>-->
+        </form>
+    </div>
+</div>
+</html>

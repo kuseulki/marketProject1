@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extra/spring-security"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+</head>
+
+<div layout:fragment="content">
+
+    <style>
+    .alert{
+       color: #5f0080;
+       font-size : 30px;
+       background-color: #FFFFFF;
+       font-weight: bold;
+       text-align: center;
+     }
+     .btn{
+         font-weight: 800;
+         font-size: 35px;
+     }
+    </style>
+
+    <div class="container">
+        <div class="alert alert-light" role="alert">관리자 페이지</div>
+        <div class="card m-2">
+            <div class="card-body">
+                <a class="btn btn-lg card-title" th:href="@{/admin/item/all}">상품관리</a>
+            </div>
+        </div>
+        <div class="card m-2">
+            <div class="card-body">
+                <a class="btn btn-lg card-title" th:href="@{/admin/user/all}">회원관리</a>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

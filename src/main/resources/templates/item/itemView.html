@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="@{/files/}+${item.fileName}" /></div>
+            <div class="col-md-6">
+                <input type="hidden" id="itemId" th:value="${item.id}">
+                <h1 class="display-5 fw-bolder" th:text="${item.getItemName()}">상품 이름</h1>
+                <div class="fs-5 mb-5">
+                    <span th:text="|${item.getPrice()} 원|">아이템 가격</span>
+                </div>
+                <p class="lead" th:text="${item.getItemDetail()}">아이템 설명</p>
+
+                <form class="d-flex" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                    <div class="d-flex">
+                        <a th:href="@{/admin/item/update/{id} (id=${item.getId()})}">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">상품 수정</button>
+                        </a>
+                        <a th:href="@{/item/delete(id=${item.id})}">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">상품 삭제</button>
+                        </a>
+                    </div>
+                </form>
+
+                <form class="d-flex" sec:authorize="hasAnyAuthority('ROLE_USER')">
+                    <input class="form-control text-center me-3" id="count" name="amount" type="num" value="1" style="max-width: 3rem"/>
+                    <button class="btn btn-primary btn-lg" type="button" id="btn-order">주문하기</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script src="/js/order.js"></script>
+</div>
+</html>
