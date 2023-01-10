@@ -28,7 +28,7 @@ public class HomeController {
         } else {
             list = itemService.itemList(searchKeyword, pageable);
         }
-        model.addAttribute("items", list);
+        model.addAttribute("list", list);
         return "home";
     }
 

@@ -1,6 +1,7 @@
 package com.market2.controller;
 
 import com.market2.config.auth.PrincipalDetails;
+import com.market2.domain.Item;
 import com.market2.dto.BoardDto;
 import com.market2.dto.CommentDto;
 import com.market2.service.BoardService;
@@ -53,7 +54,7 @@ public class BoardController {
 
     /**  4. 글 목록 - 리스트 - 검색 추가  */
     @GetMapping("/board/list")
-    public String boardList(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC)
+    public String boardList(@PageableDefault(size = 5,  sort = "id", direction = Sort.Direction.DESC)
                                     Pageable pageable, String searchKeyword, Model model) {
 
         Page<BoardDto.ResponsePageDto> list = null;
@@ -63,16 +64,7 @@ public class BoardController {
         } else {
             list = boardService.boardSearchList(searchKeyword, pageable);
         }
-
-        int nowPage = list.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(nowPage - 4, 1);
-        int endPage = Math.min(nowPage + 5, list.getTotalPages());
-
         model.addAttribute("list", list);
-        model.addAttribute("nowPage", nowPage);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-
         return "board/list";
     }
 
